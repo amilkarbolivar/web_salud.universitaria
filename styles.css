@@ -1,8 +1,9 @@
 html { height: 100%; }
 body { 
-    background: #fff;
+    
+    background: #fdfcfc;
     font-family: Arial, Helvetica, sans-serif; 
-    color: #111; text-align: center; height: 100%;
+    color: #000000; text-align: center; height: 100%;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -73,4 +74,49 @@ align-items: center;
 .navegacion li:hover{
   color: #ad3333;
 }
+.informacion{
+    width: 100%;
+   display: flex;
+align-items: center;
+    gap: 20px;
+    height: 500px;
+overflow: hidden;
+ 
+
+}
+span.izq, span.derecha {
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    font-size: 50px; /* Tamaño del icono */
+    cursor: pointer;
+    color:#ad3333; /* Cambia el color de las flechas si es necesario */
+}
+
+span.izq {
+    left: 20px; /* Posición a la izquierda */
+}
+
+span.derecha {
+    right: 20px; /* Posición a la derecha */
+}
+
+
+.informacion .contenedor1{
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    gap: 5%;
+
+}
+.informacion .contenedor1 .img1{
+ width:30% ;
+  border-radius: 20px;
+}
+.informacion .contenedor1 .parrafo1{
+  width:40%;
+    font-size: 20px;
+}
+
+
 
