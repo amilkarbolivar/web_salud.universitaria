@@ -1,0 +1,243 @@
+html { height: 100%; }
+body { 
+    background: #fff;
+    font: 400 1.5em/1.5 "Droid Serif", serif; 
+    color: #111; text-align: center; height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+ }
+
+h1 { 
+    font: 700 2.8em/1.2 "Droid Sans", sans-serif; 
+}
+h2 { 
+    font: 700 1.5em/1.5 "Droid Sans", sans-serif; margin: 1em 0; 
+
+}
+/*https://i.ibb.co/3SNpSdc/IMG-1489.jpg/*/
+#banner {
+     background: url(https://i.ibb.co/3SNpSdc/IMG-1489.jpg) no-repeat fixed 100% 100%;
+      background-size: cover;
+       color: #fff; 
+        height: 100%;
+        width: 100%; 
+    }
+
+#bannertext {
+     width: 24em; 
+     position: fixed; 
+     top: 30%; 
+     left: 50%; 
+     margin-left: -12em;
+  
+    }
+ 
+    #bannertext .baner1 p {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        font-size: 25px;
+    }
+    #bannertext .baner1 .text {
+     color: #FFF;
+     margin-left: -10px;
+    }
+    
+    .baner1{
+        border-top: .1em solid #fff;  /* Borde superior */
+        border-bottom: .1em solid #fff;  /* Borde inferior */
+        
+    }
+    #bannertext label{
+        color: #ad3333;
+     
+    }
+    #bannertext h1{
+        gap: 8px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        font-size:45px;
+    }
+#content{
+    text-align: left;
+
+ 
+}
+ 
+footer{
+    background-color: #282525;
+    height: 100px;
+}
+header{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    color: #FFF;
+    font-size: 18px;
+    justify-content: space-between;
+    position: fixed;
+    border-bottom: #ffffffcd solid 1px ;
+}
+
+.logo{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+margin-left: 20px;
+font-size: 30px;
+}
+.logo label{
+    color:#ad3333;
+}
+.navegacion{
+
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.navegacion div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   height: 100%;
+   padding-left: 15px;
+   padding-right: 20px;
+}
+.navegacion div:hover{
+    cursor: pointer;
+background-color: #ad3333cd;
+
+}
+
+
+.botones{
+    margin-top: 20px;
+}
+.botones .boton1{
+    background-color: #FFF;
+    color: #111;
+    border-radius: 20px;
+    padding: 10px; 
+border: none;
+font-size: 15px;
+
+}
+.botones .boton2:hover{
+
+    background-color: #ad3333cd;
+
+}
+.botones .boton1:hover{
+    color: #FFF;
+    background-color: #ad3333cd;
+
+}
+.botones .boton2{
+    background-color: #ffffff00;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 10px;  
+    border: none;
+    border:none;
+    font-size: 17px;
+}
+.pasarela{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ff000099, #ffffff, #ffffff, #ff00009f);
+    width: 100%;
+    height:600px;
+    color: #080808;
+ 
+
+}
+.pasarela .contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 60px;
+}
+.pasarela .flecha1{
+    position: absolute;
+    left: 0;
+    font-size: 70px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 10px;
+    z-index: 2;
+}
+.pasarela .flecha2:hover{
+    background-color: #0808084f;
+    
+}
+.pasarela .flecha1:hover{
+    background-color: #0808084f;
+    
+}
+.pasarela .flecha2{
+    font-size: 70px;
+    position: absolute;
+    right: 0;
+    color: rgb(17, 17, 17);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+.pasarela img{
+    width: 50%;
+    height: 100%;
+
+}
+#content h2{
+    margin-left:20px ;
+}
+footer {
+    background-color: #beb9b9;
+    color: #090909;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content:space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-container .foo{
+    margin-right: 500px;
+  }
+  
+  .social-icons {
+display: flex;
+flex-direction: column;
+    margin: 10px 0;
+  }
+  
+  .social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+  }
+  
+  .social-icons img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s;
+  }
+  
+  .social-icons img:hover {
+    transform: scale(1.1);
+  }
+  
+  footer p {
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  
