@@ -75,33 +75,39 @@ align-items: center;
   color: #ad3333;
 }
 .informacion{
+overflow: hidden;
+   min-height: 90%;
     width: 100%;
    display: flex;
 align-items: center;
     gap: 20px;
     height: 500px;
-overflow: hidden;
- 
-
+    transition: transform 0.3s ease;
 }
 span.izq, span.derecha {
-    position: absolute;
+    position:absolute;
     top: 50%; /* Centra verticalmente */
     font-size: 50px; /* Tamaño del icono */
     cursor: pointer;
     color:#ad3333; /* Cambia el color de las flechas si es necesario */
 }
 
-span.izq {
+.izq {
     left: 20px; /* Posición a la izquierda */
+    width: 50px;
+    
 }
 
-span.derecha {
+.derecha {
     right: 20px; /* Posición a la derecha */
 }
-
-
-.informacion .contenedor1{
+.contenedor2{
+    transition: transform 0.3s ease;
+}
+.informacion .contenedor2{
+ display: flex;
+}
+.informacion .contenedor2 .contenedor1{
   min-width: 100%;
   display: flex;
   justify-content: center;
@@ -117,6 +123,9 @@ span.derecha {
   width:40%;
     font-size: 20px;
 }
-
+.section1{
+    width: 100%;
+    height: 100%;
+}
 
 
