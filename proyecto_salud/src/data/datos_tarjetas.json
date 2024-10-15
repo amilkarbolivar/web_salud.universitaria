@@ -1,0 +1,15 @@
+{
+    "videos": {
+      "video1": {
+        "title": "El poder esta en ti",
+        "paragraph": "Unimental es una plataforma educativa que te ayudará a mejorar tu vida y desarrollar tu bienestar.",
+        "iframeUrl": "https://www.youtube.com/embed/owr6b1WxWHM?si=xShFOXSLG7eJ1tUl"
+      },
+      "video2": {
+        "title": "Video 2",
+        "paragraph": "Este es el segundo video con contenido más avanzado.",
+        "iframeUrl": "https://www.youtube.com/embed/ejemplo2"
+      }
+    }
+  }
+  
