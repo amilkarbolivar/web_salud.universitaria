@@ -15,7 +15,7 @@ function App() {
                 paragraph={datos.videos.video1.paragraph} // Accediendo al párrafo de video1
                 iframeUrl={datos.videos.video1.iframeUrl} // Accediendo a la URL del iframe
             /> 
-            
+      
         </>
     );
 }

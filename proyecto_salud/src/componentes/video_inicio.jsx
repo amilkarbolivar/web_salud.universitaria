@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 function Video({ titulo, paragraph, iframeUrl }) { // Desestructurando las props
     return (
         <>
-            <section className="flex justify-center items-center mt-[-2%]  w-full p-10 gap-20 h-screen">
-                <div className="mt-10 flex flex-col justify-center items-center w-[35%] line gap-24">
-                    <h2 className="text-4xl font-bold">{titulo}</h2>
-                    <p className="text-lg">{paragraph}</p> {/* Mostrar el párrafo */}
+            <section className="flex justify-center items-center  w-full p-10 gap-20 h-screen">
+                <div className=" flex flex-col justify-center items-center w-[35%] line gap-24">
+                    <h2 className="text-4xl font-bold text-red-600">{titulo}</h2>
+                    <p className="text-lg font-medium">{paragraph}</p> {/* Mostrar el párrafo */}
                 </div>
                 <iframe 
                     width="560" 
