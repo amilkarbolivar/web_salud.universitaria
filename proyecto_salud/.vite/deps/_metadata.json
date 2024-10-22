@@ -1,25 +1,52 @@
 {
-  "hash": "9cacc962",
+  "hash": "de6b62c7",
   "configHash": "ced49962",
-  "lockfileHash": "ec83de26",
-  "browserHash": "48131b69",
+  "lockfileHash": "59449918",
+  "browserHash": "361ff53d",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "c519aa2d",
+      "fileHash": "555cff4f",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "85c263cd",
+      "fileHash": "07635d2d",
       "needsInterop": true
+    },
+    "@mui/icons-material/DarkModeOutlined": {
+      "src": "../../node_modules/@mui/icons-material/esm/DarkModeOutlined.js",
+      "file": "@mui_icons-material_DarkModeOutlined.js",
+      "fileHash": "4be465f2",
+      "needsInterop": false
+    },
+    "prop-types": {
+      "src": "../../node_modules/prop-types/index.js",
+      "file": "prop-types.js",
+      "fileHash": "77e6fd69",
+      "needsInterop": true
+    },
+    "@mui/icons-material/ArrowLeft": {
+      "src": "../../node_modules/@mui/icons-material/esm/ArrowLeft.js",
+      "file": "@mui_icons-material_ArrowLeft.js",
+      "fileHash": "6e1be856",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-GFWMZNU4": {
-      "file": "chunk-GFWMZNU4.js"
+    "chunk-NNMKXULH": {
+      "file": "chunk-NNMKXULH.js"
+    },
+    "chunk-WNPTCGAH": {
+      "file": "chunk-WNPTCGAH.js"
+    },
+    "chunk-2ECRGVPL": {
+      "file": "chunk-2ECRGVPL.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
     }
   }
 }

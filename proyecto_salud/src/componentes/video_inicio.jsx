@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
-function Video({ titulo, paragraph, iframeUrl }) { // Desestructurando las props
+function Video({ titulo, paragraph, iframeUrl }) { 
+    
     return (
         <>
             <section className="flex justify-center items-center  w-full p-10 gap-20 h-screen">
