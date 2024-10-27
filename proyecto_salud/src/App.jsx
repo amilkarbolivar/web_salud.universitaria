@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Header from './componentes/header';
@@ -6,26 +7,35 @@ import datos from './data/datos_tarjetas.json';
 import Description from './componentes/descripcion';
 import datos2 from './data/datos_videos.json';
 import Informacion from './componentes/informacion';
+import Salud from './componentes/conoce_tusalud';
+import Infya from './componentes/informateya';
+import formulario from './data/formulario.json';
+import Foro from './componentes/foro';
+import Directorio from './componentes/directorio'
+import Inicio from './componentes/iniciar';
+
 
 function App() {
     return (
-        <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={
-                    <>
-                    <Description />
-                    <Informacion datos2={datos2.informacion} />
-                    <Video titulo={datos.videos.video1.title} paragraph={datos.videos.video1.paragraph} iframeUrl={datos.videos.video1.iframeUrl} />
-                    </>
-            } />
-                <Route path="/conoce-tu-salud" element={<div>conoce tu salud</div>} />
-                <Route path="/informate-ya" element={<div>informacion</div>} />
-                <Route path="/foros" element={<div>Foros Component</div>} />
-                <Route path="/directorio-de-salud" element={<div>Directorio de Salud Component</div>} />
-                <Route path="/registro-inicio" element={<div>Registro/Inicio Component</div>} />
-            </Routes>
-        </Router>
+        <div className="bg-gray-300 "> {/* Clase para el color de fondo */}
+            <Router>
+                <Header />
+                <Routes>
+                    <Route path="/" element={
+                        <>
+                            <Description />
+                            <Informacion datos2={datos2.informacion} />
+                            <Video titulo={datos.videos.video1.title} paragraph={datos.videos.video1.paragraph} iframeUrl={datos.videos.video1.iframeUrl} />
+                        </>
+                    } />
+                    <Route path="/conoce-tu-salud" element={<Salud form={formulario.cuestionarios} />} />
+                    <Route path="/informate-ya" element={<Infya />} />
+                    <Route path="/foros" element={<Foro/>} />
+                    <Route path="/directorio-de-salud" element={<Directorio />} />
+                    <Route path="/registro-inicio" element={<Inicio />} />
+                </Routes>
+            </Router>
+        </div>
     );
 }
 

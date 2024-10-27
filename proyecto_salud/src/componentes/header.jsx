@@ -3,32 +3,25 @@ import SettingsIcon from '@mui/icons-material/DarkModeOutlined';
 
 function Header() {
     return (
-        <header className="fixed font-medium font-roboto h-12 w-full bg-transparent flex gap-3 items-center justify-between ">
-            <h2 className="text-xl cursor-pointer h-full flex items-center justify-center pr-3 pl-3 ">Uni<span className="text-red-600">men</span>tal</h2>
-            <ol className="flex h-full gap-4">
-                <li className="hover:bg-red-600/95 rounded-sm flex items-center justify-center pr-3 pl-3 cursor-pointer">
-                    <span className="material-icons-outlined">
-                        <SettingsIcon />
-                    </span>
-                </li>
-                <li className="hover:bg-red-600/95 rounded-sm flex items-center justify-center pr-3 pl-3 cursor-pointer">
-                    <Link to="/conoce-tu-salud">Conoce tu Salud</Link>
-                </li>
-                <li className="hover:bg-red-600/95 rounded-sm flex items-center justify-center pr-3 pl-3 cursor-pointer">
-                    <Link to="/informate-ya">Informate Ya</Link>
-                </li>
-                <li className="hover:bg-red-600/95 rounded-sm flex items-center justify-center pr-3 pl-3 cursor-pointer">
-                    <Link to="/foros">Foros</Link>
-                </li>
-                <li className="hover:bg-red-600/95 rounded-sm flex items-center justify-center pr-3 pl-3 cursor-pointer">
-                    <Link to="/directorio-de-salud">Directorio de Salud</Link>
-                </li>
-                <li className="hover:bg-red-600/95 rounded-sm flex items-center justify-center pr-3 pl-3 cursor-pointer">
-                    <Link to="/registro-inicio">Registro/Inicio</Link>
-                </li>
-            </ol>
+        <header className="border-b-2 border-gray-300 z-50 fixed font-medium font-roboto h-12 w-full bg-white flex gap-3 items-center justify-between px-4 md:px-8">
+            <h2 className="text-xl cursor-pointer flex items-center">
+                <Link to="/" className="flex items-center">
+                    Uni<span className="text-red-600">men</span>tal
+                </Link>
+            </h2>
+            <nav className="flex h-full gap-4">
+                <Link to="/settings" className="flex items-center hover:bg-red-600/95 rounded-sm p-2 cursor-pointer" aria-label="Configuración">
+                    <SettingsIcon />
+                </Link>
+                <Link className="hover:bg-red-600/95 rounded-sm flex items-center p-2 cursor-pointer" to="/conoce-tu-salud">Conoce tu salud</Link>
+                <Link className="hover:bg-red-600/95 rounded-sm flex items-center p-2 cursor-pointer" to="/informate-ya">Informate Ya</Link>
+                <Link className="hover:bg-red-600/95 rounded-sm flex items-center p-2 cursor-pointer" to="/foros">Foros</Link>
+                <Link className="hover:bg-red-600/95 rounded-sm flex items-center p-2 cursor-pointer" to="/directorio-de-salud">Directorio de Salud</Link>
+                <Link className="hover:bg-red-600/95 rounded-sm flex items-center p-2 cursor-pointer" to="/registro-inicio">Registro/Inicio</Link>
+            </nav>
         </header>
     );
 }
 
 export default Header;
+

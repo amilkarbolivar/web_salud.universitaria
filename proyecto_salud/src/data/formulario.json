@@ -1,0 +1,88 @@
+{
+      "cuestionarios": [
+        {
+          "pregunta": "¿Eres humano?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es tu color favorito?",
+          "opciones": [
+            "Rojo",
+            "Azul",
+            "Verde",
+            "Amarillo"
+          ]
+        },
+        {
+          "pregunta": "¿Prefieres el café o el té?",
+          "opciones": [
+            "Café",
+            "Té"
+          ]
+        },
+        {
+          "pregunta": "¿Qué sistemas operativos has usado?",
+          "opciones": [
+            "Windows",
+            "MacOS",
+            "Linux",
+            "Otro"
+          ]
+        },
+        {
+          "pregunta": "¿Con qué frecuencia haces ejercicio?",
+          "opciones": [
+            "Diario",
+            "Semanal",
+            "Mensual",
+            "Rara vez"
+          ]
+        },
+        {
+          "pregunta": "¿Te gusta programar?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "pregunta": "¿Qué lenguajes de programación conoces?",
+          "opciones": [
+            "JavaScript",
+            "Python",
+            "Java",
+            "C++"
+          ]
+        },
+        {
+          "pregunta": "¿Cuánto tiempo pasas en redes sociales al día?",
+          "opciones": [
+            "Menos de 1 hora",
+            "1-2 horas",
+            "2-4 horas",
+            "Más de 4 horas"
+          ]
+        },
+        {
+          "pregunta": "¿Prefieres libros físicos o digitales?",
+          "opciones": [
+            "Físicos",
+            "Digitales",
+            "Ambos",
+            "Ninguno"
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es tu estación del año favorita?",
+          "opciones": [
+            "Primavera",
+            "Verano",
+            "Otoño",
+            "Invierno"
+          ]
+        }
+      ]
+    }

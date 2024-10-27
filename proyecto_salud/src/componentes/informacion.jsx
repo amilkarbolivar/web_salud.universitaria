@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 
 function Informacion({ datos2 }) {
     const [desplazamiento, setDesplazamiento] = useState(0); // Estado para el desplazamiento
-    const maxDesplazamiento =100/(datos2.length) ; // Calcular el máximo desplazamiento
+    const maxDesplazamiento =100/(datos2.length);// Calcular el máximo desplazamiento
 console.log("sss: "+desplazamiento+"ssssss"+maxDesplazamiento)
     const handleRightClick = () => {
-        if (desplazamiento != -75) {
+        if (desplazamiento != -maxDesplazamiento*(datos2.length-1)) {
             setDesplazamiento( desplazamiento- maxDesplazamiento);
+            console.log("Desplazamiento bloqueado "+desplazamiento);
         } else {
+            setDesplazamiento(0);
             console.log("Desplazamiento bloqueado");
         }
     };
@@ -19,17 +21,20 @@ console.log("sss: "+desplazamiento+"ssssss"+maxDesplazamiento)
         if (desplazamiento < 0) {
             setDesplazamiento(desplazamiento + maxDesplazamiento);
         } else {
+            setDesplazamiento((maxDesplazamiento*(datos2.length-1))*-1);
             console.log("Desplazamiento bloqueado");
         }
     };
 
     return (
-        <section className="relative w-full h-screen flex ">
+        <section className=" relative w-full h-screen flex overflow-hidden z-20">
             <div className="flex transform transition-transform duration-300 ease-in-out" style={{ transform: `translateX(${desplazamiento}%)` }}>
                 {datos2.map((item, idx) => (
-                    <div key={idx} className="flex w-screen justify-center items-center gap-10">
+                    <div key={idx} className="flex w-screen  justify-center items-center ">
+                       <div className='w-[80%] h-[70%] rounded-lg  gap-10 shadow-xl shadow-zinc-500 flex items-center justify-center bg-white'>
                         <p className="w-2/5 text-xl">{item.texto}</p>
                         <img className="w-1/4 rounded-lg" src={item.imagen} alt={`imagen-${idx}`} />
+                        </div> 
                     </div>
                 ))}
             </div>
