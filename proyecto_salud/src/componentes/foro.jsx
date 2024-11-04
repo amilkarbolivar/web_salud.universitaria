@@ -6,11 +6,11 @@ const forosIniciales = [
         id: 1,
         fecha: '10/4/2020',
         titulo: 'Foro de tecnología',
-        descripcion: 'Espacio para hablar de tecnología y avances.',
+        descripcion: 'Espacio para hablar de tecnología y avances en tecnologia y desarriollo.',
         mensajes: [
             { 
             usuario: 'Carlos',
-            contenido: 'La inteligencia artificial está revolucionando el mundo.',
+            contenido: 'La inteligencia artificial está revolucionando el mundos.',
             fecha: '10/4/2020' 
         }
         ]
