@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useUser } from "../context/UserContext"; // Importar el hook del contexto
 
 function Inicio() {
   const [isRegister, setIsRegister] = useState(false);
+  const { user, updateUser } = useUser(); // Usar el contexto
+  const navigate = useNavigate(); // Crear el hook de navegación
 
   const [formData, setFormData] = useState({
     apodo: "",
@@ -57,8 +61,10 @@ function Inicio() {
           });
 
           if (response.ok) {
-            alert("Registro exitoso!");
+          
+            updateUser(usuario); // Actualizar el usuario en el contexto
             setFormData({ apodo: "", correo: "", contraseña: "", nombre: "" });
+            navigate("/"); // Redirigir al inicio después de un registro exitoso
           } else {
             alert("Error al registrar el usuario.");
           }
@@ -78,8 +84,9 @@ function Inicio() {
             );
 
             if (usuario) {
-              alert(`¡Inicio de sesión exitoso! Bienvenido, ${usuario.nombre}`);
-              // Aquí puedes redirigir o almacenar información del usuario
+            
+              updateUser(usuario); // Actualizar el usuario en el contexto
+              navigate("/"); // Redirigir al inicio después de un inicio de sesión exitoso
             } else {
               alert("Correo o contraseña incorrectos.");
             }
@@ -161,7 +168,7 @@ function Inicio() {
           className="flex flex-col p-8 bg-white shadow-2xl rounded-lg"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Iniciar Sesión</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Iniciar sesión</h2>
           <input
             className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="email"
@@ -185,13 +192,13 @@ function Inicio() {
             Iniciar sesión
           </button>
           <p className="mt-4 text-sm text-center">
-            ¿No tienes cuenta?{" "}
+            ¿No tienes una cuenta?{" "}
             <button
               type="button"
-              className="text-red-600 font-bold hover:underline"
+              className="text-blue-600 font-bold hover:underline"
               onClick={toggleForm}
             >
-              Registrarse
+              Regístrate
             </button>
           </p>
         </form>

@@ -53,7 +53,7 @@ function Directorio() {
           filteredEmpresas.map((empresa, index) => (
             <div
               key={index}
-              className="bg-white p-4 border rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white p-4 border-2 border-red-500 rounded-lg shadow-md hover:shadow-lg transition-shadow"
             >
               <h3 className="text-xl font-semibold text-gray-800">{empresa.nombre_empresa}</h3>
               <p className="text-gray-600 mt-2">{empresa.descrip_empresa}</p>

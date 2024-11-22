@@ -13,41 +13,40 @@ import Foro from './componentes/foro';
 import Directorio from './componentes/directorio';
 import Inicio from './componentes/iniciar';
 import Footer from './componentes/footer';
+import { UserProvider } from './context/UserContext'; // Importar el UserProvider
+
 function App() {
-
-
   return (
-    <div className=""> {/* Fondo claro y altura mínima en toda la pantalla */}
-      <Router>
-        <Header />
-        <main className=" py-10"> {/* Contenedor principal estilizado */}
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Description />
-                  <Informacion datos2={datos2.informacion} />
-                  <Video
-                    titulo={datos.videos.video1.title}
-                    paragraph={datos.videos.video1.paragraph}
-                    iframeUrl={datos.videos.video1.iframeUrl}
-                  />
-                </>
-              }
-            />
-            <Route
-              path="/conoce-tu-salud"
-              element={<Salud form={formulario.cuestionarios} />}
-            />
-            <Route path="/informate-ya" element={<Infya />} />
-            <Route path="/foros" element={<Foro />} />
-            <Route path="/directorio-de-salud" element={<Directorio />} />
-            <Route path="/registro-inicio" element={<Inicio />} />
-          </Routes>
-        </main>
-
-      </Router>
+    <div className="">
+      <UserProvider> {/* Proveedor de contexto de usuario */}
+        <Router>
+          <Header />
+          <main className="py-10">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Description />
+                    <Informacion datos2={datos2.informacion} />
+                    <Video
+                      titulo={datos.videos.video1.title}
+                      paragraph={datos.videos.video1.paragraph}
+                      iframeUrl={datos.videos.video1.iframeUrl}
+                    />
+                  </>
+                }
+              />
+              <Route path="/conoce-tu-salud" element={<Salud form={formulario.cuestionarios} />} />
+              <Route path="/informate-ya" element={<Infya />} />
+              <Route path="/foros" element={<Foro />} />
+              <Route path="/directorio-de-salud" element={<Directorio />} />
+              <Route path="/registro-inicio" element={<Inicio />} />
+            </Routes>
+          </main>
+          <Footer />
+        </Router>
+      </UserProvider>
     </div>
   );
 }
