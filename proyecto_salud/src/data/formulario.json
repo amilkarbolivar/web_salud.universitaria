@@ -1,88 +1,100 @@
 {
-      "cuestionarios": [
+  "cuestionarios": [
+    {
+      "titulo": "Cuestionario de Ansiedad",
+      "preguntas": [
         {
-          "pregunta": "¿Eres humano?",
+          "pregunta": "¿Con qué frecuencia sientes nerviosismo o preocupación excesiva?",
           "opciones": [
-            "Sí",
-            "No"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         },
         {
-          "pregunta": "¿Cuál es tu color favorito?",
+          "pregunta": "¿Tienes dificultad para relajarte?",
           "opciones": [
-            "Rojo",
-            "Azul",
-            "Verde",
-            "Amarillo"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         },
         {
-          "pregunta": "¿Prefieres el café o el té?",
+          "pregunta": "¿Te cuesta conciliar el sueño debido a preocupaciones?",
           "opciones": [
-            "Café",
-            "Té"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Cuestionario de Depresión",
+      "preguntas": [
+        {
+          "pregunta": "¿Con qué frecuencia sientes tristeza o vacío?",
+          "opciones": [
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         },
         {
-          "pregunta": "¿Qué sistemas operativos has usado?",
+          "pregunta": "¿Has perdido interés en actividades que solías disfrutar?",
           "opciones": [
-            "Windows",
-            "MacOS",
-            "Linux",
-            "Otro"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         },
         {
-          "pregunta": "¿Con qué frecuencia haces ejercicio?",
+          "pregunta": "¿Te sientes fatigado o con poca energía regularmente?",
           "opciones": [
-            "Diario",
-            "Semanal",
-            "Mensual",
-            "Rara vez"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Cuestionario de Estrés",
+      "preguntas": [
+        {
+          "pregunta": "¿Te sientes abrumado por tus responsabilidades?",
+          "opciones": [
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         },
         {
-          "pregunta": "¿Te gusta programar?",
+          "pregunta": "¿Tienes dificultad para mantener la concentración debido a preocupaciones?",
           "opciones": [
-            "Sí",
-            "No"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         },
         {
-          "pregunta": "¿Qué lenguajes de programación conoces?",
+          "pregunta": "¿Sientes tensión física, como dolores de cabeza o musculares?",
           "opciones": [
-            "JavaScript",
-            "Python",
-            "Java",
-            "C++"
-          ]
-        },
-        {
-          "pregunta": "¿Cuánto tiempo pasas en redes sociales al día?",
-          "opciones": [
-            "Menos de 1 hora",
-            "1-2 horas",
-            "2-4 horas",
-            "Más de 4 horas"
-          ]
-        },
-        {
-          "pregunta": "¿Prefieres libros físicos o digitales?",
-          "opciones": [
-            "Físicos",
-            "Digitales",
-            "Ambos",
-            "Ninguno"
-          ]
-        },
-        {
-          "pregunta": "¿Cuál es tu estación del año favorita?",
-          "opciones": [
-            "Primavera",
-            "Verano",
-            "Otoño",
-            "Invierno"
+            "Nunca",
+            "Rara vez",
+            "A menudo",
+            "Siempre"
           ]
         }
       ]
     }
+  ]
+}

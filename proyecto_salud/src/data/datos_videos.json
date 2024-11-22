@@ -1,25 +1,26 @@
 {
-    "informacion": [
-      {
-        "texto": "1 gipsum dolor sit amet consectetur adipisicing elit. Sed officiis temporibus eos? Laudantium placeat nobis, voluptates quibusdam architecto odio consectetur nostrum, eveniet sint amet libero aliquam alias aspernatur. Sapiente, neque!",
-        "imagen": "https://www.shutterstock.com/image-photo/orange-cat-sits-looking-straight-600nw-2479857351.jpg"
-      },
-      {
-        "texto": "2 ipsum dolor sit amet consectetur adipisicing elit. Sed officiis temporibus eos? Laudantium placeat nobis, voluptates quibusdam architecto odio consectetur nostrum, eveniet sint amet libero aliquam alias aspernatur. Sapiente, neque!",
-        "imagen": "https://www.shutterstock.com/image-photo/orange-cat-sits-looking-straight-600nw-2479857351.jpg"
-      },
-      {
-        "texto": "3 ipsum dolor sit amet consectetur adipisicing elit. Sed officiis temporibus eos? Laudantium placeat nobis, voluptates quibusdam architecto odio consectetur nostrum, eveniet sint amet libero aliquam alias aspernatur. Sapiente, neque!",
-        "imagen": "https://www.shutterstock.com/image-photo/orange-cat-sits-looking-straight-600nw-2479857351.jpg"
-      },
-      {
-        "texto": "4 ipsum dolor sit amet consectetur adipisicing elit. Sed officiis temporibus eos? Laudantium placeat nobis, voluptates quibusdam architecto odio consectetur nostrum, eveniet sint amet libero aliquam alias aspernatur. Sapiente, neque!",
-        "imagen": "https://www.shutterstock.com/image-photo/orange-cat-sits-looking-straight-600nw-2479857351.jpg"
-      },
-      {
-        "texto": "5 ipsum dolor sit amet consectetur adipisicing elit. Sed officiis temporibus eos? Laudantium placeat nobis, voluptates quibusdam architecto odio consectetur nostrum, eveniet sint amet libero aliquam alias aspernatur. Sapiente, neque!",
-        "imagen": "https://www.shutterstock.com/image-photo/orange-cat-sits-looking-straight-600nw-2479857351.jpg"
-      }
-    ]
-  }
+  "informacion": [
+    {
+      "texto": "La salud mental incluye el bienestar emocional, psicológico y social, e impacta en cómo pensamos, sentimos y actuamos en nuestra vida diaria.",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDlsOfsHdISyVrBFx6dyGQ91DtNbfCnapajg&s"
+    },
+    {
+      "texto": "La meditación y la práctica de la atención plena ayudan a reducir el estrés y mejorar la salud mental al enfocarse en el momento presente.",
+      "imagen": "https://manmedicalinstitute.com/wp-content/uploads/2021/12/salud-menta-y-atractivo.jpg"
+    },
+    {
+      "texto": "Hablar abiertamente sobre problemas emocionales es un paso importante para reducir el estigma de la salud mental.",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDlsOfsHdISyVrBFx6dyGQ91DtNbfCnapajg&s"
+    },
+    {
+      "texto": "El ejercicio físico regular puede aliviar síntomas de ansiedad y depresión al liberar endorfinas y mejorar el estado de ánimo.",
+      "imagen": "https://manmedicalinstitute.com/wp-content/uploads/2021/12/salud-menta-y-atractivo.jpg"
+    },
+    {
+      "texto": "Dormir lo suficiente es fundamental para mantener una buena salud mental, ya que el sueño afecta el estado de ánimo y la capacidad de lidiar con el estrés.",
+      "imagen": "https://manmedicalinstitute.com/wp-content/uploads/2021/12/salud-menta-y-atractivo.jpg"
+    }
+  ]
+}
+
   

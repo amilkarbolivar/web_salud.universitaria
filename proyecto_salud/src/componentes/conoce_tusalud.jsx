@@ -1,55 +1,87 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function Salud({ form }) {
-    const [mostrarCuestionario, setMostrarCuestionario] = useState(false);
+  const [cuestionario1, setCuestionario1] = useState(null);
 
-    const toggleCuestionario = () => {
-        setMostrarCuestionario(!mostrarCuestionario);
-    };
+  // Cambiar formulario cuando se selecciona un cuestionario
+  const cambiar_formulario = (cuestionarioSeleccionado) => {
+    setCuestionario1(cuestionarioSeleccionado); // Aquí se actualiza el estado con el cuestionario seleccionado
+  };
 
-    return (
-        <section className="h-auto p-10 flex justify-center items-center flex-col">
-            <h2 className="mt-16 mb-8 text-black text-3xl">Cuestionario de salud mental</h2>
-            <button
-                onClick={toggleCuestionario}
-                className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-            >
-                {mostrarCuestionario ? 'Ocultar Cuestionario' : 'Mostrar Cuestionario'}
-            </button>
-            
-            {mostrarCuestionario && (
-                <form className="w-full flex gap-3 flex-col justify-center items-center mt-8">
-                    {form.map((cuestionario, index) => (
-                        <div key={index} className="mb-6">
-                            <p className="text-lg font-semibold mb-2">{cuestionario.pregunta}</p>
-                            {cuestionario.opciones.map((opcion, opcionIndex) => (
-                                <label key={opcionIndex} className="  flex  gap-5 text-gray-700 text-sm mb-1">
-                                    <input
-                                        type="radio"
-                                        name={`pregunta-${index}`}
-                                        value={opcion}
-                                        className="mr-2"
-                                    />
-                                    {opcion}
-                                </label>
-                            ))}
-                        </div>
-                    ))}
-                    <button
-                        type="submit"
-                        className="mt-4 px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
-                    >
-                        Enviar
-                    </button>
-                </form>
-            )}
-        </section>
-    );
+  return (
+ 
+     <div className="bg-gray-100 min-h-screen flex flex-col items-center py-10">
+  {/* Condición para mostrar los cuestionarios o las preguntas */}
+  {cuestionario1 === null ? (
+    <section className="w-full max-w-3xl p-8 bg-white rounded-lg shadow-lg">
+      <h2 className="text-3xl font-extrabold text-gray-800 text-center mb-6">
+        Cuestionario de Salud Mental
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {form.map((cuestionarioItem, index) => (
+          <div
+            key={index}
+            onClick={() => cambiar_formulario(cuestionarioItem)} // Cuando se hace clic, se selecciona el cuestionario
+            className="p-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 cursor-pointer shadow-md transition-all flex items-center justify-center"
+          >
+            {cuestionarioItem.titulo} {/* Mostrar el título del cuestionario */}
+          </div>
+        ))}
+      </div>
+    </section>
+      ) : (
+        // Si se ha seleccionado un cuestionario, se muestran las preguntas
+        <div className=''>
+<form className="p-16 bg-gray-50 shadow-md rounded-lg max-w-2xl mx-auto">
+  <h3 className="text-3xl font-extrabold mb-6 text-gray-800 text-center">
+    {cuestionario1.titulo}
+  </h3>
+  {cuestionario1.preguntas.map((pregunta, index) => (
+    <div key={index} className="mb-6">
+      {/* Pregunta */}
+      <label
+        htmlFor={`pregunta-${index}`}
+        className="text-xl font-semibold text-gray-700 mb-2 block"
+      >
+        {pregunta.pregunta}
+      </label>
+      {/* Opciones */}
+      <div className="grid grid-cols-1 gap-4">
+        {pregunta.opciones.map((opcion, i) => (
+          <label
+            key={i}
+            className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-300 hover:shadow-md cursor-pointer transition-all"
+          >
+            <input
+              type="radio"
+              name={`pregunta-${index}`}
+              value={`opcion-${i}`}
+              className="h-5 w-5 accent-blue-500"
+              required={i === 0} // Asegura que al menos un radio sea obligatorio
+            />
+            <span className="text-lg text-gray-600">{opcion}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+  ))}
+  <button
+    type="submit"
+    className="w-full py-3 mt-4 bg-blue-600 text-white font-semibold text-lg rounded-lg shadow-md hover:bg-blue-700 transition-all"
+  >
+    Enviar
+  </button>
+</form>
+
+</div>
+      )}
+    </div>
+  );
 }
 
 Salud.propTypes = {
-    form: PropTypes.array.isRequired
+  form: PropTypes.array.isRequired, // Asegura que "form" sea un array
 };
 
 export default Salud;
