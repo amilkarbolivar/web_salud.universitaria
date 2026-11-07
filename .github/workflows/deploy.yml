@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy en EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/unimental
+            git pull --ff-only
+            cp .env.example .env 2>/dev/null || true
+            docker compose pull
+            docker compose up -d --build
+            docker compose exec -T backend node src/db/migrate.js
+            docker compose exec -T backend node src/db/seed.js || true
+            docker compose ps

@@ -1,25 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
+import PropTypes from "prop-types";
 
-// Crear el contexto de usuario
-const UserContext = createContext();
+const UserContext = createContext(null);
 
-// Crear un proveedor de contexto
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Información del usuario
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // Función para actualizar los datos del usuario
-  const updateUser = (userData) => {
-    setUser(userData);
-  };
+  const updateUser = useCallback((userData) => {
+    if (!userData) {
+      setUser(null);
+      return;
+    }
+    // Nunca almacenar contraseñas ni hashes en el cliente.
+    const safe = { ...userData };
+    delete safe.contraseña;
+    delete safe.password;
+    delete safe.password_hash;
+    setUser(safe);
+  }, []);
+
+  const clearUser = useCallback(() => setUser(null), []);
 
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
+    <UserContext.Provider value={{ user, updateUser, clearUser, loading, setLoading }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-// Hook para usar el contexto de usuario en cualquier componente
+UserProvider.propTypes = {
+  children: PropTypes.node,
+};
+
 export const useUser = () => {
-  return useContext(UserContext);
+  const ctx = useContext(UserContext);
+  if (!ctx) throw new Error("useUser debe usarse dentro de UserProvider");
+  return ctx;
 };

@@ -1,0 +1,8 @@
+.git
+node_modules
+proyecto_salud/node_modules
+proyecto_salud/dist
+proyecto_salud/.vite
+backend/node_modules
+backend/.env
+*.log

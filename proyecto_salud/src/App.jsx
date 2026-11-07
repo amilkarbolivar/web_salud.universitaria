@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Header from './componentes/header';
@@ -13,39 +14,67 @@ import Foro from './componentes/foro';
 import Directorio from './componentes/directorio';
 import Inicio from './componentes/iniciar';
 import Footer from './componentes/footer';
-import { UserProvider } from './context/UserContext'; // Importar el UserProvider
+import { UserProvider, useUser } from './context/UserContext';
+import { apiJson } from './services/api';
+
+function SessionBootstrap() {
+  const { updateUser, setLoading } = useUser();
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      setLoading(true);
+      try {
+        const data = await apiJson('/api/v1/auth/me');
+        if (active) updateUser(data.user);
+      } catch {
+        if (active) updateUser(null);
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => { active = false; };
+  }, [updateUser, setLoading]);
+  return null;
+}
+
+function AppRoutes() {
+  return (
+    <Router>
+      <Header />
+      <main className="pt-24 md:pt-16">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Description />
+                <Informacion datos2={datos2.informacion} />
+                <Video
+                  titulo={datos.videos.video1.title}
+                  paragraph={datos.videos.video1.paragraph}
+                  iframeUrl={datos.videos.video1.iframeUrl}
+                />
+              </>
+            }
+          />
+          <Route path="/conoce-tu-salud" element={<Salud form={formulario.cuestionarios} />} />
+          <Route path="/informate-ya" element={<Infya />} />
+          <Route path="/foros" element={<Foro />} />
+          <Route path="/directorio-de-salud" element={<Directorio />} />
+          <Route path="/registro-inicio" element={<Inicio />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
+  );
+}
 
 function App() {
   return (
     <div className="">
-      <UserProvider> {/* Proveedor de contexto de usuario */}
-        <Router>
-          <Header />
-          <main className="py-10">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Description />
-                    <Informacion datos2={datos2.informacion} />
-                    <Video
-                      titulo={datos.videos.video1.title}
-                      paragraph={datos.videos.video1.paragraph}
-                      iframeUrl={datos.videos.video1.iframeUrl}
-                    />
-                  </>
-                }
-              />
-              <Route path="/conoce-tu-salud" element={<Salud form={formulario.cuestionarios} />} />
-              <Route path="/informate-ya" element={<Infya />} />
-              <Route path="/foros" element={<Foro />} />
-              <Route path="/directorio-de-salud" element={<Directorio />} />
-              <Route path="/registro-inicio" element={<Inicio />} />
-            </Routes>
-          </main>
-          <Footer />
-        </Router>
+      <UserProvider>
+        <SessionBootstrap />
+        <AppRoutes />
       </UserProvider>
     </div>
   );

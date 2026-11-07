@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
-import { useUser } from "../context/UserContext"; // Importar el hook del contexto
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import { apiJson } from "../services/api";
 
 function Inicio() {
   const [isRegister, setIsRegister] = useState(false);
-  const { user, updateUser } = useUser(); // Usar el contexto
-  const navigate = useNavigate(); // Crear el hook de navegación
+  const { updateUser } = useUser();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     apodo: "",
@@ -14,190 +15,173 @@ function Inicio() {
     nombre: "",
   });
 
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setError("");
   };
 
   const validateForm = () => {
     const { apodo, correo, contraseña, nombre } = formData;
 
-    if (isRegister && !apodo.trim()) {
-      alert("El campo 'Apodo' no puede estar vacío.");
-      return false;
+    if (isRegister) {
+      if (!nombre.trim()) return "El campo 'Nombre' no puede estar vacío.";
+      if (!apodo.trim()) return "El campo 'Apodo' no puede estar vacío.";
     }
-    if (isRegister && !nombre.trim()) {
-      alert("El campo 'Nombre' no puede estar vacío.");
-      return false;
-    }
-    if (!correo.trim()) {
-      alert("El campo 'Correo' no puede estar vacío.");
-      return false;
-    }
-    if (!contraseña.trim()) {
-      alert("El campo 'Contraseña' no puede estar vacío.");
-      return false;
-    }
-    return true;
+    if (!correo.trim()) return "El campo 'Correo' no puede estar vacío.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) return "El correo no es válido.";
+    if (!contraseña.trim()) return "El campo 'Contraseña' no puede estar vacío.";
+    if (isRegister && contraseña.length < 8) return "La contraseña debe tener al menos 8 caracteres.";
+    return "";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    setSubmitting(true);
+    setError("");
+
+    try {
       if (isRegister) {
-        const usuario = {
-          ...formData,
-          cargo: "usuario",
-          fecha_creacion: new Date().toLocaleDateString("es-ES"),
-        };
-
-        try {
-          const response = await fetch("http://localhost:8080/api/v1/usuarios", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(usuario),
-          });
-
-          if (response.ok) {
-          
-            updateUser(usuario); // Actualizar el usuario en el contexto
-            setFormData({ apodo: "", correo: "", contraseña: "", nombre: "" });
-            navigate("/"); // Redirigir al inicio después de un registro exitoso
-          } else {
-            alert("Error al registrar el usuario.");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          alert("No se pudo conectar con el servidor.");
-        }
+        const data = await apiJson("/api/v1/auth/register", {
+          method: "POST",
+          body: {
+            nombre: formData.nombre.trim(),
+            apodo: formData.apodo.trim(),
+            correo: formData.correo.trim(),
+            contraseña: formData.contraseña,
+          },
+        });
+        updateUser(data.user);
+        setFormData({ apodo: "", correo: "", contraseña: "", nombre: "" });
+        navigate("/");
       } else {
-        try {
-          const response = await fetch("http://localhost:8080/api/v1/usuarios");
-          if (response.ok) {
-            const usuarios = await response.json();
-            const usuario = usuarios.find(
-              (user) =>
-                user.correo === formData.correo &&
-                user.contraseña === formData.contraseña
-            );
-
-            if (usuario) {
-            
-              updateUser(usuario); // Actualizar el usuario en el contexto
-              navigate("/"); // Redirigir al inicio después de un inicio de sesión exitoso
-            } else {
-              alert("Correo o contraseña incorrectos.");
-            }
-          } else {
-            alert("Error al consultar los usuarios.");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          alert("No se pudo conectar con el servidor.");
-        }
+        const data = await apiJson("/api/v1/auth/login", {
+          method: "POST",
+          body: {
+            correo: formData.correo.trim(),
+            contraseña: formData.contraseña,
+          },
+        });
+        updateUser(data.user);
+        setFormData({ apodo: "", correo: "", contraseña: "", nombre: "" });
+        navigate("/");
       }
+    } catch (err) {
+      setError(err.message || "No se pudo conectar con el servidor.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const toggleForm = () => {
     setIsRegister((prev) => !prev);
     setFormData({ apodo: "", correo: "", contraseña: "", nombre: "" });
+    setError("");
   };
 
   return (
-    <section className="h-screen flex flex-col justify-center items-center bg-gray-100">
+    <section className="min-h-screen flex flex-col justify-center items-center bg-gray-100 px-4">
       {isRegister ? (
-        <form
-          className="flex flex-col p-8 bg-white shadow-2xl rounded-lg"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col p-8 bg-white shadow-2xl rounded-lg w-full max-w-sm" onSubmit={handleSubmit} noValidate>
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Registrarse</h2>
           <input
-            className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="text"
             placeholder="Nombre"
             name="nombre"
             value={formData.nombre}
             onChange={handleChange}
+            autoComplete="name"
+            required
           />
           <input
-            className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="text"
             placeholder="Apodo"
             name="apodo"
             value={formData.apodo}
             onChange={handleChange}
+            autoComplete="username"
+            required
           />
           <input
-            className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="email"
             placeholder="Correo"
             name="correo"
             value={formData.correo}
             onChange={handleChange}
+            autoComplete="email"
+            required
           />
           <input
-            className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="password"
             placeholder="Contraseña"
             name="contraseña"
             value={formData.contraseña}
             onChange={handleChange}
+            autoComplete="new-password"
+            required
           />
+          {error && <p className="text-red-600 text-sm mb-4" role="alert">{error}</p>}
           <button
             type="submit"
-            className="w-full py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600"
+            disabled={submitting}
+            className="w-full py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 disabled:opacity-60"
           >
-            Registrarse
+            {submitting ? "Enviando..." : "Registrarse"}
           </button>
           <p className="mt-4 text-sm text-center">
             ¿Ya tienes una cuenta?{" "}
-            <button
-              type="button"
-              className="text-blue-600 font-bold hover:underline"
-              onClick={toggleForm}
-            >
+            <button type="button" className="text-blue-600 font-bold hover:underline" onClick={toggleForm}>
               Iniciar sesión
             </button>
           </p>
         </form>
       ) : (
-        <form
-          className="flex flex-col p-8 bg-white shadow-2xl rounded-lg"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col p-8 bg-white shadow-2xl rounded-lg w-full max-w-sm" onSubmit={handleSubmit} noValidate>
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Iniciar sesión</h2>
           <input
-            className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="email"
             placeholder="Correo"
             name="correo"
             value={formData.correo}
             onChange={handleChange}
+            autoComplete="email"
+            required
           />
           <input
-            className="w-64 p-4 mb-4 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             type="password"
             placeholder="Contraseña"
             name="contraseña"
             value={formData.contraseña}
             onChange={handleChange}
+            autoComplete="current-password"
+            required
           />
+          {error && <p className="text-red-600 text-sm mb-4" role="alert">{error}</p>}
           <button
             type="submit"
-            className="w-full py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600"
+            disabled={submitting}
+            className="w-full py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 disabled:opacity-60"
           >
-            Iniciar sesión
+            {submitting ? "Enviando..." : "Iniciar sesión"}
           </button>
           <p className="mt-4 text-sm text-center">
             ¿No tienes una cuenta?{" "}
-            <button
-              type="button"
-              className="text-blue-600 font-bold hover:underline"
-              onClick={toggleForm}
-            >
+            <button type="button" className="text-blue-600 font-bold hover:underline" onClick={toggleForm}>
               Regístrate
             </button>
           </p>
